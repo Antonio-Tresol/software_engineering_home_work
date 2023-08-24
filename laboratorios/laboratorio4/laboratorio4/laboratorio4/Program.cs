@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using laboratorio4.Data;
+using laboratorio4.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,11 +13,17 @@ var builder = WebApplication.CreateBuilder(args);
  */
 builder.Services.AddRazorPages();
 // the scaffolder added this line to  inject the database context
+/* The RazorPagesMovieContext object handles the task of connecting to the database and mapping Movie objects to database records. */
 builder.Services.AddDbContext<laboratorio4Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("laboratorio4Context") ?? throw new InvalidOperationException("Connection string 'laboratorio4Context' not found.")));
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope()) {
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
