@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
  * This inversion of control (IoC) decouples the object or function from its dependencies and makes it easier to test and maintain. 
  */
 builder.Services.AddRazorPages();
+// the scaffolder added this line to  inject the database context
 builder.Services.AddDbContext<laboratorio4Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("laboratorio4Context") ?? throw new InvalidOperationException("Connection string 'laboratorio4Context' not found.")));
 
