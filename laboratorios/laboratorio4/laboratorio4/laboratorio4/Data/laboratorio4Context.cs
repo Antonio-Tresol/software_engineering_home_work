@@ -11,5 +11,7 @@ namespace laboratorio4.Data {
             : base(options) { }
 
         public DbSet<Movie> Movie { get; set; } = default!;
+
+        public DbSet<laboratorio4.Models.Song> Song { get; set; } = default!;
     }
 }
