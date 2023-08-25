@@ -7,18 +7,21 @@ using System.Runtime.Intrinsics.X86;
 namespace laboratorio4.Models {
     public class Movie {
         public int Id { get; set; }
-        // the question mark after the data type means attribute is nullable
-        public string? Title { get; set; }
-        // The [Display] attribute specifies the display name of a field. In the preceding code, Release Date instead of ReleaseDate.
-        [Display(Name = "Release Date")]
-        // The [DataType] attribute specifies the type of the data (Date). The time information stored in the field isn't displayed.
-        [DataType(DataType.Date)]
-        public DateTime ReleaseDate { get; set; }
-        public string? Genre { get; set; }
 
-        // data annotation enables Entity Framework Core to correctly map Price to currency in the database.
-        [Column(TypeName = "decimals(18, 2")]
+        [StringLength(60, MinimumLength = 3)]
+        public string Title { get; set; } = string.Empty;
+
+        [Display(Name = "Release Date"), DataType(DataType.Date)]
+        public DateTime ReleaseDate { get; set; }
+
+        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$"), Required, StringLength(30)]
+        public string Genre { get; set; } = string.Empty;
+
+        [Range(1, 100), DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
+
+        [RegularExpression(@"^[A-Z]+[a-zA-Z0-9""'\s-]*$"), StringLength(5)]
         public string Rating { get; set; } = string.Empty;
     }
 }
