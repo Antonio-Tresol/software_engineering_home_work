@@ -8,50 +8,39 @@ using Microsoft.EntityFrameworkCore;
 using laboratorio4.Data;
 using laboratorio4.Models;
 
-namespace laboratorio4.Pages.Movies
-{
-    public class DeleteModel : PageModel
-    {
-        private readonly laboratorio4.Data.laboratorio4Context _context;
+namespace laboratorio4.Pages.Movies {
+    public class DeleteModel : PageModel {
+        private readonly laboratorio4Context _context;
 
-        public DeleteModel(laboratorio4.Data.laboratorio4Context context)
-        {
+        public DeleteModel(laboratorio4Context context) {
             _context = context;
         }
 
         [BindProperty]
       public Movie Movie { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null || _context.Movie == null)
-            {
+        public async Task<IActionResult> OnGetAsync(int? id) {
+            if (id == null || _context.Movie == null) {
                 return NotFound();
             }
 
             var movie = await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (movie == null)
-            {
+            if (movie == null) {
                 return NotFound();
-            }
-            else 
-            {
+            } else {
                 Movie = movie;
             }
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
-        {
-            if (id == null || _context.Movie == null)
-            {
+        public async Task<IActionResult> OnPostAsync(int? id) {
+            if (id == null || _context.Movie == null) {
                 return NotFound();
             }
             var movie = await _context.Movie.FindAsync(id);
 
-            if (movie != null)
-            {
+            if (movie != null) {
                 Movie = movie;
                 _context.Movie.Remove(Movie);
                 await _context.SaveChangesAsync();
