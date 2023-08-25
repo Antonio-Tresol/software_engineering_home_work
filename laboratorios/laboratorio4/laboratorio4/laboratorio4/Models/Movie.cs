@@ -19,5 +19,6 @@ namespace laboratorio4.Models {
         // data annotation enables Entity Framework Core to correctly map Price to currency in the database.
         [Column(TypeName = "decimals(18, 2")]
         public decimal Price { get; set; }
+        public string Rating { get; set; } = string.Empty;
     }
 }

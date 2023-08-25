@@ -8,10 +8,13 @@ using laboratorio4.Data;
 
 #nullable disable
 
-namespace laboratorio4.Migrations {
+namespace laboratorio4.Migrations
+{
     [DbContext(typeof(laboratorio4Context))]
-    partial class laboratorio4ContextModelSnapshot : ModelSnapshot {
-        protected override void BuildModel(ModelBuilder modelBuilder) {
+    partial class laboratorio4ContextModelSnapshot : ModelSnapshot
+    {
+        protected override void BuildModel(ModelBuilder modelBuilder)
+        {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.10")
@@ -41,7 +44,7 @@ namespace laboratorio4.Migrations {
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movie");
+                    b.ToTable("Movie", (string)null);
                 });
 #pragma warning restore 612, 618
         }
