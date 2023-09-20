@@ -26,6 +26,8 @@ namespace ContosoUniversity.Pages.Students
             {
                 // we could use take(x) to limit the number of records returned
                 Student = await _context.Students.ToListAsync();
+                // only statements that cause queries or commands to be sent to the database
+                // are executed asynchrously, those are toListAsync, SingleOrDefaultAsync, FirstOrDefaultAsync and SaveChangesAsync
             }
             
         }

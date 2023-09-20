@@ -9,13 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 
-namespace ContosoUniversity.Pages.Students
-{
-    public class EditModel : PageModel
-    {
-        private readonly ContosoUniversity.Data.SchoolContext _context;
+namespace ContosoUniversity.Pages.Students {
+    public class EditModel : PageModel {
+        private readonly SchoolContext _context;
 
-        public EditModel(ContosoUniversity.Data.SchoolContext context)
+        public EditModel(SchoolContext context)
         {
             _context = context;
         }
@@ -23,55 +21,39 @@ namespace ContosoUniversity.Pages.Students
         [BindProperty]
         public Student Student { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null || _context.Students == null)
-            {
+        public async Task<IActionResult> OnGetAsync(int? id) {
+            if (id == null) {
                 return NotFound();
             }
 
-            var Student =  await _context.Students.FirstOrDefaultAsync(m => m.ID == id);
-            if (Student == null)
-            {
+            Student = await _context.Students.FindAsync(id);
+
+            if (Student == null) {
                 return NotFound();
             }
-            Student = Student;
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
+        public async Task<IActionResult> OnPostAsync(int id) {
+            var studentToUpdate = await _context.Students.FindAsync(id);
+
+            if (studentToUpdate == null) {
+                return NotFound();
             }
 
-            _context.Attach(Student).State = EntityState.Modified;
-
-            try
+            if (await TryUpdateModelAsync<Student>(
+                studentToUpdate,
+                "student",
+                s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
             {
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StudentExists(Student.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                // The database context keeps track of whether entities in memory are in sync with their corresponding rows in the database.
+                // This tracking information determines what happens when SaveChangesAsync is called. In a nustshell, the database context issues and  insert command when the state is "Added",
+                // an update command when the state is "Modified", and a delete command when the state is "Deleted".
+                return RedirectToPage("./Index");
             }
 
-            return RedirectToPage("./Index");
-        }
-
-        private bool StudentExists(int id)
-        {
-          return _context.Students.Any(e => e.ID == id);
+            return Page();
         }
     }
 }
