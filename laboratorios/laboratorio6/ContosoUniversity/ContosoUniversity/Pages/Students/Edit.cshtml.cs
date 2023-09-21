@@ -13,8 +13,7 @@ namespace ContosoUniversity.Pages.Students {
     public class EditModel : PageModel {
         private readonly SchoolContext _context;
 
-        public EditModel(SchoolContext context)
-        {
+        public EditModel(SchoolContext context){
             _context = context;
         }
 
@@ -41,7 +40,7 @@ namespace ContosoUniversity.Pages.Students {
                 return NotFound();
             }
 
-            if (await TryUpdateModelAsync<Student>(
+            if (await TryUpdateModelAsync(
                 studentToUpdate,
                 "student",
                 s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
