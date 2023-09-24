@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore; // this lines were added by the scaffolder
-using Microsoft.Extensions.DependencyInjection;
 using ContosoUniversity.Data; // this lines were added by the scaffolder
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,7 +36,7 @@ using (var scope = app.Services.CreateScope())
     // making sure the database exists and its schema is updated
     // this is responsible for creating the database if it doesn't exist, based on the DbContext
     // we use this only in development environment, and early in the development process
-    context.Database.EnsureCreated();
+    // context.Database.EnsureCreated();
 
     // Initialize the database with any test data or seed data it requires.
     DbInitializer.Initialize(context);
