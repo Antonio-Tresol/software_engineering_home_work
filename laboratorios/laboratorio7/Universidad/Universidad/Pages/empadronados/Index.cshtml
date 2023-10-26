@@ -1,0 +1,54 @@
+﻿@page
+@model Universidad.Pages.empadronados.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Empadronado_en[0].FechaIngreso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empadronado_en[0].FechaGraduacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empadronado_en[0].CedEstudianteNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empadronado_en[0].CodCarreraNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Empadronado_en) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaIngreso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaGraduacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedEstudianteNavigation.Cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodCarreraNavigation.Codigo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

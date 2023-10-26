@@ -1,0 +1,44 @@
+﻿@page
+@model Universidad.Pages.cursos.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Curso</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Curso.Sigla" class="control-label"></label>
+                <input asp-for="Curso.Sigla" class="form-control" />
+                <span asp-validation-for="Curso.Sigla" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Curso.Nombre" class="control-label"></label>
+                <input asp-for="Curso.Nombre" class="form-control" />
+                <span asp-validation-for="Curso.Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Curso.Creditos" class="control-label"></label>
+                <input asp-for="Curso.Creditos" class="form-control" />
+                <span asp-validation-for="Curso.Creditos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
