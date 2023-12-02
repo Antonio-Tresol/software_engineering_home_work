@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+examen2/app_source/ForestWebApp/.idea/
+examen2/app_source/ForestWebApp/.vs/
+examen2/app_source/ForestWebApp/bin/
+examen2/app_source/ForestWebApp/obj/
