@@ -1,10 +1,14 @@
 using ForestWebApp.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddScoped<IForestRepository, ForestRepository>();
+builder.Services.AddLogging();
+
 builder.Services.AddDbContext<ForestWebAppContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ForestWebAppContext") ?? throw new InvalidOperationException("Connection string 'ForestWebAppContext' not found.")));
 

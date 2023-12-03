@@ -2,7 +2,6 @@ using ForestWebApp.Data;
 using ForestWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 
 namespace ForestWebApp.Pages.Forests;
 
