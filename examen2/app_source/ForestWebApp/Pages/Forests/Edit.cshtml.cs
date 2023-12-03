@@ -6,51 +6,47 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ForestWebApp.Pages.Forests;
 
-public class EditModel : PageModel
+public class EditModel(IForestRepository forestRepository, ILogger<EditModel> logger)
+    : PageModel
 {
-    private readonly ForestWebAppContext _context;
+    [BindProperty] public Forest Forest { get; set; }
 
-    public EditModel(ForestWebAppContext context)
+    public async Task<IActionResult> OnGetAsync(Guid id)
     {
-        _context = context;
+        try
+        {
+            var forest = await forestRepository.GetForestAsync(id);
+            if (forest == null)
+            {
+                logger.LogWarning($"Forest {Forest.Name} not found.");
+                return NotFound();
+            }
+
+            Forest = forest;
+            return Page();
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Error in OnGetAsync in Forests/Edit.cshtml.cs");
+            return RedirectToPage("../Error");
+        }
     }
 
-    [BindProperty] public Forest Forest { get; set; } = default!;
 
-    public async Task<IActionResult> OnGetAsync(Guid? id)
-    {
-        if (id == null) return NotFound();
-
-        var forest = await _context.Forest.FirstOrDefaultAsync(m => m.Id == id);
-        if (forest == null) return NotFound();
-        Forest = forest;
-        return Page();
-    }
-
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see https://aka.ms/RazorPagesCRUD.
     public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid) return Page();
 
-        _context.Attach(Forest).State = EntityState.Modified;
-
         try
         {
-            await _context.SaveChangesAsync();
+            await forestRepository.UpdateForestAsync(Forest);
+            logger.LogInformation($"Forest {Forest.Name} updated.");
         }
-        catch (DbUpdateConcurrencyException)
+        catch (Exception e)
         {
-            if (!ForestExists(Forest.Id))
-                return NotFound();
-            throw;
+            logger.LogError(e, "Error in OnPostAsync in Forests/Edit.cshtml.cs");
         }
 
         return RedirectToPage("./Index");
-    }
-
-    private bool ForestExists(Guid id)
-    {
-        return _context.Forest.Any(e => e.Id == id);
     }
 }

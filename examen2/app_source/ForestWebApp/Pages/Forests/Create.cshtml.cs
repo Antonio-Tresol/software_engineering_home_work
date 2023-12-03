@@ -5,40 +5,46 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ForestWebApp.Pages.Forests;
 
-public class CreateModel : PageModel
+public class CreateModel(IForestRepository forestRepository, ILogger<CreateModel> logger)
+    : PageModel
 {
-    private readonly ForestWebAppContext _context;
-
-    public CreateModel(ForestWebAppContext context)
-    {
-        _context = context;
-    }
-
     public IActionResult OnGet()
     {
         return Page();
     }
 
-    [BindProperty] public Forest Forest { get; set; } = default!;
+    [BindProperty] public Forest Forest { get; set; }
 
-  
+
     public async Task<IActionResult> OnPostAsync()
     {
         var forest = new Forest();
 
-        if (!await TryUpdateModelAsync(
-                forest,
-                "forest",
-                f => f.Name, 
-                f => f.CountryOfOrigin, 
-                f => f.AreaKm2, 
-                f => f.TypeOfVegetation, 
-                f => f.OldGrowthForest)
-            )
+        if (!await TryUpdateModelAsync(forest))
             return RedirectToPage("./Index");
+        try
+        {
+            await forestRepository.AddForestAsync(forest);
+            logger.LogInformation($"Forest {Forest.Name} added.");
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Error in OnPostAsync in Forests/Create.cshtml.cs");
+        }
         
-        _context.Forest.Add(forest);
-        await _context.SaveChangesAsync();
+
         return RedirectToPage("./Index");
+    }
+
+    private Task<bool> TryUpdateModelAsync(Forest forest)
+    {
+        return TryUpdateModelAsync(
+            forest,
+            "forest",
+            f => f.Name,
+            f => f.CountryOfOrigin,
+            f => f.AreaKm2,
+            f => f.TypeOfVegetation,
+            f => f.OldGrowthForest);
     }
 }

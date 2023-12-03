@@ -6,41 +6,44 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ForestWebApp.Pages.Forests;
 
-public class DeleteModel : PageModel
+public class DeleteModel(IForestRepository forestRepository, ILogger<DeleteModel> logger)
+    : PageModel
 {
-    private readonly ForestWebAppContext _context;
+    [BindProperty] public Forest Forest { get; set; }
 
-    public DeleteModel(ForestWebAppContext context)
+    public async Task<IActionResult> OnGetAsync(Guid id)
     {
-        _context = context;
-    }
-
-    [BindProperty] public Forest Forest { get; set; } = default!;
-
-    public async Task<IActionResult> OnGetAsync(Guid? id)
-    {
-        if (id == null) return NotFound();
-
-        var forest = await _context.Forest.FirstOrDefaultAsync(m => m.Id == id);
-
-        if (forest == null)
-            return NotFound();
-        Forest = forest;
-        return Page();
-    }
-
-    public async Task<IActionResult> OnPostAsync(Guid? id)
-    {
-        if (id == null) return NotFound();
-
-        var forest = await _context.Forest.FindAsync(id);
-        if (forest != null)
+        try
         {
-            Forest = forest;
-            _context.Forest.Remove(Forest);
-            await _context.SaveChangesAsync();
-        }
+            var forest = await forestRepository.GetForestAsync(id);
 
-        return RedirectToPage("./Index");
+            if (forest == null)
+                return NotFound();
+            Forest = forest;
+            return Page();
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Error in OnGetAsync in Forests/Delete.cshtml.cs");
+            return RedirectToPage("../Error");
+        }
+    }
+
+    public async Task<IActionResult> OnPostAsync(Guid id)
+    {
+        try
+        {
+            var forest = await forestRepository.GetForestAsync(id);
+            if (forest == null)
+                return NotFound();
+
+            await forestRepository.DeleteForestAsync(forest);
+            return RedirectToPage("./Index");
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Error in OnPostAsync in Forests/Delete.cshtml.cs");
+            return RedirectToPage("../Error");
+        }
     }
 }
