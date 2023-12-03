@@ -2,7 +2,7 @@
 @model ForestWebApp.Pages.Forests.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "forests";
 }
 
 <h1>Index</h1>
@@ -10,7 +10,8 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table" aria-describedby="forest table">
+<h4 id="foresttable"></h4>
+<table class="table" aria-describedby="foresttable">
     <thead>
         <tr>
             <th>
