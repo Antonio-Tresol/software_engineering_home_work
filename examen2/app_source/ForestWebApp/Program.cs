@@ -1,4 +1,5 @@
 using ForestWebApp.Data;
+using ForestWebApp.RenderUtils;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IForestRepository, ForestRepository>();
+builder.Services.AddSingleton<ICountrySelectItemCreator, CountrySelectItemCreator>();
 builder.Services.AddLogging();
 
 builder.Services.AddDbContext<ForestWebAppContext>(options =>
