@@ -12,11 +12,114 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
 
 body {
   margin-bottom: 60px;
 }
+
+:root {
+  --main-green-background: #196F3D;
+  --main-green-hover: #145A32;
+  --main-text-color: #fff;
+
+  --danger-red-background: #e65038;
+  --danger-red-hover: #B8402C;
+
+  --tooltip-hover-background-color: #979A9A;
+
+  --disabled-background-color: #979A9A;
+  --disable-text-color: #D0D3D4;
+
+  --arrow-color-active: #229954;
+  --arrow-color: #145A32;
+}
+
+.main-btn {
+  background: var(--main-green-background);
+  color: var(--main-text-color);
+  font-weight: bold;
+  border-color: transparent;
+}
+
+.main-btn:hover {
+  background: var(--main-green-hover);
+  color: var(--main-text-color);
+  border-color: transparent;
+}
+
+.btn-text-link {
+  text-decoration: none;
+}
+
+.delete-btn {
+  background: var(--danger-red-background);
+  color: var(--main-text-color);
+  font-weight: bold;
+  border-color: transparent;
+}
+
+.delete-btn:hover {
+  background: var(--danger-red-hover);
+  color: var(--main-text-color);
+  border-color: transparent;
+}
+
+.main-btn:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  background: var(--tooltip-hover-background-color);
+  color: var(--main-text-color);
+  padding: 5px;
+  border-radius: 5px;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.delete-btn:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  background: var(--tooltip-hover-background-color);
+  color: var(--main-text-color);
+  padding: 5px;
+  border-radius: 5px;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.main-btn-basic {
+ 
+  background: var(--main-green-background);
+  color: var(--main-text-color);
+  font-weight: bold;
+  border-color: transparent;
+}
+
+.main-btn-basic:hover {
+  background: var(--main-green-hover);
+  color: var(--main-text-color);
+  border-color: transparent;
+}
+
+.delete-btn-basic {
+  background: var(--danger-red-background);
+  color: var(--main-text-color);
+  font-weight: bold;
+  border-color: transparent;
+}
+
+.delete-btn-basic:hover {
+  background: var(--danger-red-hover);
+  color: var(--main-text-color);
+  border-color: transparent;
+}
+
+.rounded-card {
+  border-radius: 1rem;
+}
+
+
+
