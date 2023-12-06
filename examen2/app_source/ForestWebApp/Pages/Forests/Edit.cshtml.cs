@@ -11,9 +11,9 @@ public class EditModel(IForestRepository forestRepository, ILogger<EditModel> lo
         ICountrySelectItemCreator countrySelectItemCreator)
     : PageModel
 {
-    [BindProperty] public Forest Forest { get; set; }
+    [BindProperty] public Forest? Forest { get; set; }
 
-    public List<SelectListItem> Countries { get; set; }
+    public List<SelectListItem>? Countries { get; set; }
 
 
     public async Task<IActionResult> OnGetAsync(Guid id)

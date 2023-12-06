@@ -4,5 +4,5 @@ namespace ForestWebApp.RenderUtils;
 
 public interface ICountrySelectItemCreator
 {
-    public List<SelectListItem> GetCountries();
+    public List<SelectListItem>? GetCountries();
 }

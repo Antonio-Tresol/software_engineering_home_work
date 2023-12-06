@@ -8,7 +8,7 @@ namespace ForestWebApp.Pages.Forests;
 public class DetailsModel(IForestRepository forestRepository, ILogger<DetailsModel> logger)
     : PageModel
 {
-    public Forest Forest { get; set; }
+    public Forest? Forest { get; set; }
 
     public async Task<IActionResult> OnGetAsync(Guid id)
     {
@@ -17,7 +17,7 @@ public class DetailsModel(IForestRepository forestRepository, ILogger<DetailsMod
             var forest = await forestRepository.GetForestAsync(id);
             if (forest == null)
             {
-                logger.LogWarning($"Forest {Forest.Name} not found.");
+                logger.LogWarning($"Forest {id} not found.");
                 return NotFound();
             }
 

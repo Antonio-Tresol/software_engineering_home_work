@@ -8,7 +8,7 @@ namespace ForestWebApp.Pages.Forests;
 public class DeleteModel(IForestRepository forestRepository, ILogger<DeleteModel> logger)
     : PageModel
 {
-    [BindProperty] public Forest Forest { get; set; }
+    [BindProperty] public Forest? Forest { get; set; }
 
     public async Task<IActionResult> OnGetAsync(Guid id)
     {

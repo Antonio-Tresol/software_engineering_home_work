@@ -1,21 +1,27 @@
 using ForestWebApp.Data;
 using ForestWebApp.Models;
+using ForestWebApp.RenderUtils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ForestWebApp.Pages.Forests;
 
-public class CreateModel(IForestRepository forestRepository, ILogger<CreateModel> logger)
+public class CreateModel(IForestRepository forestRepository, ILogger<CreateModel> logger,
+        ICountrySelectItemCreator countrySelectItemCreator)
     : PageModel
 {
-    public IActionResult OnGet()
-    {
-        return Page();
-    }
+    
 
     [BindProperty] public Forest Forest { get; set; }
 
+    public List<SelectListItem>? Countries { get; set; }
 
+    public IActionResult OnGet()
+    {
+        Countries = countrySelectItemCreator.GetCountries();
+        return Page();
+    }
     public async Task<IActionResult> OnPostAsync()
     {
         var forest = new Forest();
@@ -31,7 +37,7 @@ public class CreateModel(IForestRepository forestRepository, ILogger<CreateModel
         {
             logger.LogError(e, "Error in OnPostAsync in Forests/Create.cshtml.cs");
         }
-        
+
 
         return RedirectToPage("./Index");
     }

@@ -6,39 +6,40 @@
 }
 
 <div class="card rounded-card">
-    <div class="card-body rounded-card align-items-center">
-        <h4 class="card-title text-center">Detalles del Bosque: @Model.Forest.Name</h4>
-        <h6 class="text-muted card-subtitle mb-2 text-center">Información del bosque</h6>
-
+    <div class="card-body rounded-card align-items-center text-center">
+        <h3 class="card-title">Detalles del Bosque: @Model.Forest.Name</h3>
+        <h4 class="text-muted card-subtitle mb-2">Información del bosque</h4>
 
         <div class="row d-flex justify-content-center">
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <!-- Details Display -->
-                <dl class="row">
-                    <!-- Forest Name -->
-                    <dt class="col-sm-5">@Html.DisplayNameFor(model => model.Forest.Name)</dt>
-                    <dd class="col-sm-7">@Html.DisplayFor(model => model.Forest.Name)</dd>
+                <div>
+                    <br/>
 
                     <!-- Country of Origin -->
-                    <dt class="col-sm-5">@Html.DisplayNameFor(model => model.Forest.CountryOfOrigin)</dt>
-                    <dd class="col-sm-7">@Html.DisplayFor(model => model.Forest.CountryOfOrigin)</dd>
+                    <h4 class="text-center">@Html.DisplayNameFor(model => model.Forest.CountryOfOrigin)</h4>
+                    <h5 class="text-center">@Html.DisplayFor(model => model.Forest.CountryOfOrigin)</h5>
+                    <br/>
 
                     <!-- Type of Vegetation -->
-                    <dt class="col-sm-5">@Html.DisplayNameFor(model => model.Forest.TypeOfVegetation)</dt>
-                    <dd class="col-sm-7">@Html.DisplayFor(model => model.Forest.TypeOfVegetation)</dd>
+                    <h4 class="text-center">@Html.DisplayNameFor(model => model.Forest.TypeOfVegetation)</h4>
+                    <h5 class="text-center">@Html.DisplayFor(model => model.Forest.TypeOfVegetation)</h5>
+                    <br/>
 
                     <!-- Area in Km2 -->
-                    <dt class="col-sm-5">@Html.DisplayNameFor(model => model.Forest.AreaKm2)</dt>
-                    <dd class="col-sm-7">@Html.DisplayFor(model => model.Forest.AreaKm2)</dd>
+                    <h4 class="text-center">@Html.DisplayNameFor(model => model.Forest.AreaKm2)</h4>
+                    <h5 class="text-center">@Html.DisplayFor(model => model.Forest.AreaKm2)</h5>
+                    <br/>
 
                     <!-- Old Growth Forest -->
-                    <dt class="col-sm-5">@Html.DisplayNameFor(model => model.Forest.OldGrowthForest)</dt>
-                    <dd class="col-sm-7">@Html.DisplayFor(model => model.Forest.OldGrowthForest)</dd>
-                </dl>
+                    <h4 class="text-center">@Html.DisplayNameFor(model => model.Forest.OldGrowthForest)</h4>
+                    <h5 class="text-center">@Html.DisplayFor(model => model.Forest.OldGrowthForest)</h5>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <br/>
 
@@ -67,7 +68,7 @@
 
     <!-- Delete Button -->
     <button id="deleteBtn[@Model.Forest.Name]" class="delete-btn-basic rounded-pill" type="button" data-tooltip="Eliminar Bosque">
-        <a class="text-white btn-text-link" asp-page="Delete" asp-route-id="@Model.Forest.Name">
+        <a class="text-white btn-text-link" asp-page="Delete" asp-route-id="@Model.Forest.Id">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor">
                 <path d="M0 0h24v24H0V0z" fill="none"></path>
                 <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v10zM18 4h-2.5l-.71-.71c-.18-.18-.44-.29-.7-.29H9.91c-.26 0-.52.11-.7.29L8.5 4H6c-.55 0-1 .45-1 1s.45 1 1 1h12c.55 0 1-.45 1-1s-.45-1-1-1z"></path>

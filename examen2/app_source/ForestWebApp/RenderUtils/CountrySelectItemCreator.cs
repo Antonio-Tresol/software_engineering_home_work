@@ -4,9 +4,9 @@ namespace ForestWebApp.RenderUtils;
 
 public class CountrySelectItemCreator : ICountrySelectItemCreator
 {
-    private List<SelectListItem> _countries = new();
+    private List<SelectListItem>? _countries = new();
     
-    public List<SelectListItem> GetCountries()
+    public List<SelectListItem>? GetCountries()
     {
         if (_countries.Count == 0)
         {
