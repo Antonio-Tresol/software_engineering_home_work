@@ -7,15 +7,32 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ForestWebApp.Pages.Forests;
 
+/// <summary>
+///     The page model for the edit page of the forest app.
+/// </summary>
+/// <param name="forestRepository"> a repository to access forests data</param>
+/// <param name="logger"> a simple logger</param>
+/// <param name="countrySelectItemCreator"> a helper to create select items for countries</param>
 public class EditModel(IForestRepository forestRepository, ILogger<EditModel> logger,
         ICountrySelectItemCreator countrySelectItemCreator)
     : PageModel
 {
-    [BindProperty] public Forest? Forest { get; set; }
+    /// <summary>
+    ///     The forest to be edited.
+    /// </summary>
+    [BindProperty]
+    public Forest Forest { get; set; } = null!;
 
+    /// <summary>
+    ///     The list of countries to be used in the select list.
+    /// </summary>
     public List<SelectListItem>? Countries { get; set; }
 
-
+    /// <summary>
+    ///     Serves the edit page, fetching the forest data to be edited.
+    /// </summary>
+    /// <param name="id"> the id of the forest to be edited</param>
+    /// <returns> the edit page</returns>
     public async Task<IActionResult> OnGetAsync(Guid id)
     {
         try
@@ -24,7 +41,7 @@ public class EditModel(IForestRepository forestRepository, ILogger<EditModel> lo
             var forest = await forestRepository.GetForestAsync(id);
             if (forest == null)
             {
-                logger.LogWarning($"Forest {Forest.Name} not found.");
+                logger.LogWarning($"Forest {id} not found.");
                 return NotFound();
             }
 
@@ -38,7 +55,10 @@ public class EditModel(IForestRepository forestRepository, ILogger<EditModel> lo
         }
     }
 
-
+    /// <summary>
+    ///     Updates the forest data.
+    /// </summary>
+    /// <returns> the home page</returns>
     public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid) return Page();
@@ -53,6 +73,6 @@ public class EditModel(IForestRepository forestRepository, ILogger<EditModel> lo
             logger.LogError(e, "Error in OnPostAsync in Forests/Edit.cshtml.cs");
         }
 
-        return RedirectToPage("./Index");
+        return RedirectToPage("/Index");
     }
 }

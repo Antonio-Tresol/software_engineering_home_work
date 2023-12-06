@@ -5,11 +5,25 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ForestWebApp.Pages.Forests;
 
+/// <summary>
+///     The page model for the delete page of the forest app.
+/// </summary>
+/// <param name="forestRepository"> a repository to access forests data</param>
+/// <param name="logger"> a simple logger</param>
 public class DeleteModel(IForestRepository forestRepository, ILogger<DeleteModel> logger)
     : PageModel
 {
-    [BindProperty] public Forest? Forest { get; set; }
+    /// <summary>
+    ///     The forest to be deleted.
+    /// </summary>
+    [BindProperty]
+    public Forest Forest { get; set; } = null!;
 
+    /// <summary>
+    ///     Serves the delete page, fetching the forest data to be deleted.
+    /// </summary>
+    /// <param name="id"> the id of the forest to be deleted</param>
+    /// <returns> the delete page</returns>
     public async Task<IActionResult> OnGetAsync(Guid id)
     {
         try
@@ -28,6 +42,11 @@ public class DeleteModel(IForestRepository forestRepository, ILogger<DeleteModel
         }
     }
 
+    /// <summary>
+    ///     Deletes the forest data.
+    /// </summary>
+    /// <param name="id"> the id of the forest to be deleted</param>
+    /// <returns> the home page</returns>
     public async Task<IActionResult> OnPostAsync(Guid id)
     {
         try
@@ -37,7 +56,7 @@ public class DeleteModel(IForestRepository forestRepository, ILogger<DeleteModel
                 return NotFound();
 
             await forestRepository.DeleteForestAsync(forest);
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Index");
         }
         catch (Exception e)
         {
