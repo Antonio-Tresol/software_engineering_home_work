@@ -3,7 +3,7 @@
 # Examen 2 - Ingeniería de Software
 
 ## Resumen
-- **Nombre:** Usted, A. Badilla Olivas
+- **Nombre:** A. Badilla Olivas
 - **Carnet:** B80874
 
 ### Requisitos de la aplicación principal
