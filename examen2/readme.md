@@ -8,6 +8,8 @@
 
 ### Requisitos de la aplicación principal
 
+Esta aplicación fue desarrollada con .NET 8.0.0
+
 - `Microsoft.EntityFrameworkCore` versión `8.0.0`
 - `Microsoft.EntityFrameworkCore.Abstractions` versión `8.0.0`
 - `Microsoft.EntityFrameworkCore.Analyzers` versión `8.0.0`
