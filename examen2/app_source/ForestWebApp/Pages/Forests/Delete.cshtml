@@ -7,39 +7,40 @@
 
 <div class="card rounded-card">
     <div class="card-body rounded-card align-items-center text-center">
-        <h3 class="card-title">Eliminar Bosque: @Model.Forest.Name</h3>
-        <h4 class="text-muted card-subtitle mb-2">¿Está seguro de que quiere eliminar este bosque?</h4>
+        <!-- title and subtitle -->
+        <h3 id="ForestName" class="card-title">Eliminar Bosque: @Model.Forest.Name</h3>
+        <h4 class="text-muted card-subtitle mb-2">¿Está segura de que quiere eliminar este bosque?</h4>
 
         <div class="row d-flex justify-content-center">
             <div class="col-md-6">
                 <!-- Details Display -->
                 <div>
-            
+
                     <br/>
                     <!-- Country of Origin -->
                     <h4 class="text-center">@Html.DisplayNameFor(model => model.Forest.CountryOfOrigin)</h4>
-                    <h5 class="text-center">@Html.DisplayFor(model => model.Forest.CountryOfOrigin)</h5>
+                    <h5 id="[@Model.Forest.Name]CountryOfOrigin" class="text-center">@Html.DisplayFor(model => model.Forest.CountryOfOrigin)</h5>
                     <br/>
 
                     <!-- Type of Vegetation -->
                     <h4 class="text-center">@Html.DisplayNameFor(model => model.Forest.TypeOfVegetation)</h4>
-                    <h5 class="text-center">@Html.DisplayFor(model => model.Forest.TypeOfVegetation)</h5>
+                    <h5 id="[@Model.Forest.Name]TypeOfVegetation" class="text-center">@Html.DisplayFor(model => model.Forest.TypeOfVegetation)</h5>
                     <br/>
 
                     <!-- Area in Km2 -->
                     <h4 class="text-center">@Html.DisplayNameFor(model => model.Forest.AreaKm2)</h4>
-                    <h5 class="text-center">@Html.DisplayFor(model => model.Forest.AreaKm2)</h5>
+                    <h5 id="[@Model.Forest.Name]AreaKm2" class="text-center">@Html.DisplayFor(model => model.Forest.AreaKm2)</h5>
                     <br/>
 
                     <!-- Old Growth Forest -->
                     <h4 class="text-center">@Html.DisplayNameFor(model => model.Forest.OldGrowthForest)</h4>
-                    <h5 class="text-center">@Html.DisplayFor(model => model.Forest.OldGrowthForest)</h5>
+                    <h5 id="[@Model.Forest.Name]OldGrowthForest" class="text-center">@Html.DisplayFor(model => model.Forest.OldGrowthForest)</h5>
                 </div>
             </div>
         </div>
         <form method="post">
             <input type="hidden" asp-for="Forest.Id"/>
-            <input type="submit" value="Eliminar" class="delete-btn rounded-pill"/>
+            <input id="deleteForestSubmitBtn" type="submit" value="Eliminar" class="delete-btn rounded-pill"/>
         </form>
     </div>
 
@@ -49,6 +50,7 @@
 
 
 <br/>
+<!-- button to return to the catalog -->
 <div>
     <button id="returnToCatalog" class="main-btn rounded-pill">
         <a class="text-white btn-text-link" asp-page="/Index">

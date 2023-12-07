@@ -12,17 +12,19 @@
     <script src="~/js/forest-index.js"></script>
 }
 
+<!-- card with the forests table -->
 <div class="card rounded-card">
     <div class="card-body rounded-card">
-        
+        <!-- title -->
         <h4 id="forestsTitle" class="text-center card-title">Catálogo de Bosques</h4>
+        <!-- create forest button -->
         <button id="createForestBtn" class="rounded-pill main-btn-basic" type="button">
             <a class="text-white btn-text-link" asp-page="/Forests/Create">Crear Bosque</a>
         </button>
 
         <br/>
         <br/>
-
+        <!-- forests table -->
         <table id="forestsTable" class="table hover" aria-describedby="forestsTitle">
             <thead>
             <tr>
@@ -46,6 +48,7 @@
                 </th>
             </tr>
             </thead>
+            <!-- forests table body -->
             <tbody>
             @foreach (var item in Model.Forests)
             {
@@ -65,8 +68,9 @@
                     <td id="oldGrowthForest[@item.Name]">
                         @Html.DisplayFor(modelItem => item.OldGrowthForest)
                     </td>
+                    <!-- crud actions buttons -->
                     <td id="actions[@item.Name]">
-
+                        <!-- edit button -->
                         <button id="editBtn[@item.Name]" class="main-btn rounded-pill" type="button" data-tooltip="Editar Bosque">
                             <a class="text-white btn-text-link" asp-page="/Forests/Edit" asp-route-id="@item.Id">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor">
@@ -75,7 +79,7 @@
                                 </svg>
                             </a>
                         </button>
-
+                        <!-- details button -->
                         <button id="detailsBtn[@item.Name]" class="main-btn rounded-pill" type="button" data-tooltip="Detalles del Bosque">
                             <a class="text-white btn-text-link" asp-page="/Forests/Details" asp-route-id="@item.Id">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor">
@@ -84,7 +88,7 @@
                                 </svg>
                             </a>
                         </button>
-
+                        <!-- delete button -->
                         <button id="deleteBtn[@item.Name]" class="delete-btn rounded-pill" type="button" data-tooltip="Eliminar Bosque">
                             <a class="text-white btn-text-link" asp-page="/Forests/Delete" asp-route-id="@item.Id">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor">

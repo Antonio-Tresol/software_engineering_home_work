@@ -12,45 +12,58 @@
 
 <div class="card rounded-card">
     <div class="card-body rounded-card align-items-center">
-        <h4 class="card-title text-center">Editar Bosque @Model.Forest.Name</h4>
+        <!-- title and subtitle -->
+        <h4 id="ForestName" class="card-title text-center">Editar Bosque @Model.Forest.Name</h4>
         <h6 class="text-muted card-subtitle mb-2 text-center">Datos del bosque</h6>
         <div class="row d-flex justify-content-center">
             <div class="col-md-6">
+                <!-- form to edit the forest -->
                 <form method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="hidden" asp-for="Forest.Id"/>
                     <br/>
+                    <!-- input field for the forest name -->
                     <div class="form-group">
                         <label asp-for="Forest.Name" class="control-label"></label>
+                        <!-- id = Forest_Name -->
                         <input asp-for="Forest.Name" class="form-control"/>
                         <span asp-validation-for="Forest.Name" class="text-danger"></span>
                     </div>
                     <br/>
+                    <!-- input field for the forest country of origin -->
                     <div class="form-group">
                         <label asp-for="Forest.CountryOfOrigin" class="control-label"></label>
+                        <!-- id = Forest_CountryOfOrigin -->
                         <select asp-for="Forest.CountryOfOrigin" asp-items="Model.Countries" class="form-control"></select>
                         <span asp-validation-for="Forest.CountryOfOrigin" class="text-danger"></span>
                     </div>
                     <br/>
+                    <!-- input field for the forest type of vegetation -->
                     <div class="form-group">
                         <label asp-for="Forest.TypeOfVegetation" class="control-label"></label>
+                        <!-- id = Forest_TypeOfVegetation -->
                         <input asp-for="Forest.TypeOfVegetation" class="form-control"/>
                         <span asp-validation-for="Forest.TypeOfVegetation" class="text-danger"></span>
                     </div>
                     <br/>
+                    <!-- input field for the forest area in km2 -->
                     <div class="form-group">
                         <label asp-for="Forest.AreaKm2" class="control-label"></label>
+                        <!-- id = Forest_AreaKm2 -->
                         <input asp-for="Forest.AreaKm2" class="form-control"/>
                         <span asp-validation-for="Forest.AreaKm2" class="text-danger"></span>
                     </div>
                     <br/>
+                    <!-- input field for the OldGrowthForest status -->
                     <div class="form-group form-check">
                         <label class="form-check-label">
+                            <!-- id = Forest_OldGrowthForest -->
                             <input class="form-check-input" asp-for="Forest.OldGrowthForest"/> @Html.DisplayNameFor(model => model.Forest.OldGrowthForest)
                         </label>
                     </div>
+                    <!-- button to edit the forest -->
                     <div class="form-group">
-                        <input type="submit" value="Guardar Cambios" class="main-btn-basic rounded-pill"/>
+                        <input id="EditForestSubmitBtn" type="submit" value="Guardar Cambios" class="main-btn-basic rounded-pill"/>
                     </div>
                 </form>
             </div>
