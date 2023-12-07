@@ -1,3 +1,5 @@
+![image](https://github.com/Antonio-Tresol/ci0126_23b_b80874/assets/84429050/ab8bd60d-9b32-4a55-a669-ab6930051368)
+
 # Examen 2 - Ingeniería de Software
 
 ## Resumen
