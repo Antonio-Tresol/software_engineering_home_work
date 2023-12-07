@@ -34,7 +34,16 @@
 
                     <!-- Old Growth Forest -->
                     <h4 class="text-center">@Html.DisplayNameFor(model => model.Forest.OldGrowthForest)</h4>
-                    <h5 id="[@Model.Forest.Name]OldGrowthForest" class="text-center">@Html.DisplayFor(model => model.Forest.OldGrowthForest)</h5>
+                    <h5 id="[@Model.Forest.Name]OldGrowthForest" class="text-center">
+                        @if (Model.Forest.OldGrowthForest)
+                        {
+                            <span>Sí</span>
+                        }
+                        else
+                        {
+                            <span>No</span>
+                        }
+                    </h5>
                 </div>
             </div>
         </div>
