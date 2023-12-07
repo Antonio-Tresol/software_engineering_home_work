@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ForestWebApp", "ForestWebAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForestWebAppUnitTests", "..\..\unit_test\ForestWebAppUnitTests\ForestWebAppUnitTests.csproj", "{E47C636A-CE58-447C-9E15-95AB8A28C8D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForestWebAppFuntionalTests", "..\..\functional_test\ForestWebAppFuntionalTests\ForestWebAppFuntionalTests.csproj", "{B015C861-8C99-460F-ACB2-B844FAD8EC5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForestWebAppFunctionalTests", "..\..\functional_test\ForestWebAppFunctionalTests\ForestWebAppFunctionalTests.csproj", "{B015C861-8C99-460F-ACB2-B844FAD8EC5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
