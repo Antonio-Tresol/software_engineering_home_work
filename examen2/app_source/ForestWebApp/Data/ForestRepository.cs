@@ -49,7 +49,7 @@ public class ForestRepository(ForestWebAppContext context, ILogger<ForestReposit
             context.Forest.Add(forest);
             await context.SaveChangesAsync();
         }
-        catch (Exception e)
+        catch (InvalidOperationException e)
         {
             LogError("AddForestAsync", e);
             throw;
@@ -66,7 +66,7 @@ public class ForestRepository(ForestWebAppContext context, ILogger<ForestReposit
             context.Attach(forest).State = EntityState.Modified;
             await context.SaveChangesAsync();
         }
-        catch (Exception e)
+        catch (InvalidOperationException e)
         {
             LogError("UpdateForestAsync", e);
             throw;
@@ -83,7 +83,7 @@ public class ForestRepository(ForestWebAppContext context, ILogger<ForestReposit
             context.Forest.Remove(forest);
             await context.SaveChangesAsync();
         }
-        catch (Exception e)
+        catch (InvalidOperationException e)
         {
             LogError("DeleteForestAsync", e);
             throw;
