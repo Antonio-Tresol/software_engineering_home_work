@@ -66,7 +66,14 @@
                         @Html.DisplayFor(modelItem => item.AreaKm2)
                     </td>
                     <td id="oldGrowthForest[@item.Name]">
-                        @Html.DisplayFor(modelItem => item.OldGrowthForest)
+                        @if (item.OldGrowthForest)
+                        {
+                            <span>Sí</span>
+                        }
+                        else
+                        {
+                            <span>No</span>
+                        }
                     </td>
                     <!-- crud actions buttons -->
                     <td id="actions[@item.Name]">
